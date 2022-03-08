@@ -2,6 +2,10 @@ var jwt = require("jsonwebtoken");
 const config = require("../config/config");
 var moment = require('moment');
 
+/************************************************
+  Create Token
+*************************************************/
+
 exports.createToken = function (user) {
 var expire = moment().add(7, 'days').valueOf();
   var payload = {
@@ -12,6 +16,10 @@ var expire = moment().add(7, 'days').valueOf();
   var token = jwt.sign(payload, config.PRIVATE_KEY);
   return token;
 };
+
+/************************************************
+  Decode Token
+*************************************************/
 
 exports.getTokenData = function (token) {
   return new Promise((resolve, reject) => {
